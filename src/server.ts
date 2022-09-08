@@ -6,6 +6,7 @@ import { Server } from 'http';
 import * as db from './data';
 import { makeLogger } from './functions/logger';
 import { delay } from './functions/delay';
+import { badRequest } from './functions/response';
 
 config();
 
@@ -40,11 +41,12 @@ export default class ApiServer {
       next();
     });
 
+    // api routes
+    app.use('/api/users', require('./routes/users'));
+
     // when invalid routes are entered
     app.use(async (req, res) => {
-      res.status(404).send({
-        message: 'Route is no where to be found.',
-      });
+      return badRequest(res, "Route doesn't exist.");
     });
 
     return this.server;
