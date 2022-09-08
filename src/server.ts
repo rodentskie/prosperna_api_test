@@ -8,6 +8,8 @@ import { makeLogger } from './functions/logger';
 import { delay } from './functions/delay';
 import { badRequest } from './functions/response';
 
+import { LoginRouter, UserRouter } from './routes';
+
 config();
 
 const logger = makeLogger('ApiServer');
@@ -42,12 +44,11 @@ export default class ApiServer {
     });
 
     // api routes
-    app.use('/api/users', require('./routes/users'));
+    app.use('/api/users', UserRouter);
+    app.use('/api/login', LoginRouter);
 
     // when invalid routes are entered
-    app.use(async (req, res) => {
-      return badRequest(res, "Route doesn't exist.");
-    });
+    app.use(async (req, res) => badRequest(res, "Route doesn't exist."));
 
     return this.server;
   }

@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 import { LooseObject } from '../types/loose-object';
 import { forbidden } from './response';
 
-const PW: string = process.env.TOKEN_PW || `mfmsosjwpxwszyzknnktjdvwqjspsqpw`;
+const PW: string = process.env.TOKEN_PW || 'mfmsosjwpxwszyzknnktjdvwqjspsqpw';
 
 // generate token that will expire in 5hrs
 export const generateAccessToken = (data: LooseObject) => {
@@ -25,7 +25,7 @@ export const validateAccessToken = (
     if (!authorization) return forbidden(res);
     const auth = authorization.split(' ');
 
-    if (auth.length == 0) return forbidden(res);
+    if (auth.length === 0) return forbidden(res);
     if (auth[0].toLowerCase() !== 'bearer') return forbidden(res);
 
     const token = auth[1]; // users token

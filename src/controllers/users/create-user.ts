@@ -18,8 +18,9 @@ export const createUser = async (req: Request, res: Response) => {
     const { email, password, password_confirmation } = data;
 
     if (!validate(email)) return badRequest(res, 'Invalid email.');
-    if (password !== password_confirmation)
+    if (password !== password_confirmation) {
       return badRequest(res, 'Password does not match.');
+    }
 
     const checkEmail = await UsersModel.exists({ email });
     if (checkEmail) return badRequest(res, 'Email already exist.');
