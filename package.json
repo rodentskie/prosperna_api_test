@@ -1,0 +1,19 @@
+{
+  "name": "prosperna_api_test",
+  "version": "0.0.1",
+  "description": "Prosperna API Exam",
+  "main": "index.ts",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rodentskie/prosperna_api_test.git"
+  },
+  "author": "Rodney Lingganay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rodentskie/prosperna_api_test/issues"
+  },
+  "homepage": "https://github.com/rodentskie/prosperna_api_test#readme"
+}
