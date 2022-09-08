@@ -30,6 +30,8 @@
     "import/no-named-as-default-member": "off",
     "import/no-useless-path-segments": "off",
     "object-curly-newline": "off",
+    "camelcase": "off",
+    "import/export": "off",
     "@typescript-eslint/no-shadow": "off"
   }
 }

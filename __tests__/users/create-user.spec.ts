@@ -7,8 +7,11 @@ import {
   fakeUserDataPasswordNoMatch,
   returnExistingUser,
 } from '../helpers/users';
+import { UsersModel } from '../../src/models/user';
 
-afterEach(async () => {});
+afterEach(async () => {
+  await UsersModel.deleteMany();
+});
 
 describe('Create user test suite.', () => {
   it('Successful create of user.', async function () {

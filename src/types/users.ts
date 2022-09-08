@@ -12,4 +12,9 @@ interface CreateUserInput {
   password_confirmation: string;
 }
 
-export { Users, CreateUserInput };
+interface LoginInput {
+  email: string;
+  password: string;
+}
+
+export { Users, CreateUserInput, LoginInput };

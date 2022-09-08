@@ -3,6 +3,7 @@ import { random, internet } from 'faker';
 import { UsersModel } from '../../../src/models/user';
 import { generateId } from '../../../src/functions/generate-id';
 import { Entities } from '../../../src/entity';
+import { encrypt } from '../../../src/functions/encryption';
 
 export const fakeUserData = () => {
   const password = random.alpha({ count: 8 });
@@ -42,4 +43,63 @@ export const returnExistingUser = async () => {
   });
 
   return user;
+};
+
+export const fakeUserDataForLogin = async () => {
+  const password = random.alpha({ count: 8 });
+  const hash = await encrypt(password);
+  const email = internet.email();
+  const id = generateId(Entities.Users);
+
+  const user = {
+    id,
+    email,
+    password: hash,
+  };
+
+  await UsersModel.create({
+    ...user,
+  });
+
+  return { email, password };
+};
+
+export const fakeUserDataForLoginNewEmail = async () => {
+  const password = random.alpha({ count: 8 });
+  const hash = await encrypt(password);
+  const email = internet.email();
+  const newEmail = internet.email();
+  const id = generateId(Entities.Users);
+
+  const user = {
+    id,
+    email,
+    password: hash,
+  };
+
+  await UsersModel.create({
+    ...user,
+  });
+
+  return { newEmail, password };
+};
+
+export const fakeUserDataForLoginNewPassword = async () => {
+  const password = random.alpha({ count: 8 });
+  const newPassword = random.alpha({ count: 8 });
+  const hash = await encrypt(password);
+  const email = internet.email();
+  const id = generateId(Entities.Users);
+
+  const user = {
+    id,
+    email,
+    password: hash,
+  };
+
+  await UsersModel.create({
+    ...user,
+  });
+
+  return { email, newPassword };
 };

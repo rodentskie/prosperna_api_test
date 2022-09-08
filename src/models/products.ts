@@ -5,6 +5,7 @@ import { Products } from '../types/products';
 const schema = new Schema<Products>(
   {
     id: { type: Buffer, required: true, unique: true },
+    userId: { type: Buffer, required: true },
     name: { type: String, required: true },
     description: String,
     tag: [String],
