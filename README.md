@@ -22,3 +22,10 @@ Run the database container: `docker-compose up -d`
 Build first the application: `npm run build`
 
 Then run: `npm start`
+
+## 💡 **[Tech Stack](#Tech-stack)**
+
+- NodeJS
+- TypeScript
+- MongoDB
+- ExpressJS

@@ -1,8 +1,6 @@
 import { random, internet } from 'faker';
 
 import { UsersModel } from '../../../src/models/user';
-import { generateId } from '../../../src/functions/generate-id';
-import { Entities } from '../../../src/entity';
 import { encrypt } from '../../../src/functions/encryption';
 
 export const fakeUserData = () => {
@@ -35,10 +33,8 @@ export const fakeUserDataPasswordNoMatch = () => {
 
 export const returnExistingUser = async () => {
   const user = fakeUserData();
-  const id = generateId(Entities.Users);
 
   await UsersModel.create({
-    id,
     ...user,
   });
 
@@ -49,10 +45,8 @@ export const fakeUserDataForLogin = async () => {
   const password = random.alpha({ count: 8 });
   const hash = await encrypt(password);
   const email = internet.email();
-  const id = generateId(Entities.Users);
 
   const user = {
-    id,
     email,
     password: hash,
   };
@@ -69,10 +63,8 @@ export const fakeUserDataForLoginNewEmail = async () => {
   const hash = await encrypt(password);
   const email = internet.email();
   const newEmail = internet.email();
-  const id = generateId(Entities.Users);
 
   const user = {
-    id,
     email,
     password: hash,
   };
@@ -89,10 +81,8 @@ export const fakeUserDataForLoginNewPassword = async () => {
   const newPassword = random.alpha({ count: 8 });
   const hash = await encrypt(password);
   const email = internet.email();
-  const id = generateId(Entities.Users);
 
   const user = {
-    id,
     email,
     password: hash,
   };
@@ -102,4 +92,14 @@ export const fakeUserDataForLoginNewPassword = async () => {
   });
 
   return { email, newPassword };
+};
+
+export const returnExistingUserFromDB = async () => {
+  const user = fakeUserData();
+
+  const res = await UsersModel.create({
+    ...user,
+  });
+
+  return res;
 };

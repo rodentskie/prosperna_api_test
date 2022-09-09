@@ -4,7 +4,6 @@ import { Users } from '../types/users';
 
 const schema = new Schema<Users>(
   {
-    id: { type: Buffer, required: true, unique: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
     createdAt: Date,

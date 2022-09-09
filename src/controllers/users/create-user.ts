@@ -2,8 +2,6 @@ import { Request, Response } from 'express';
 import { validate } from 'email-validator';
 
 import { created, badRequest } from '../../functions/response';
-import { generateId } from '../../functions/generate-id';
-import { Entities } from '../../entity';
 import { CreateUserInput } from '../../types/users';
 import { UsersModel } from '../../models/user';
 import { makeLogger } from '../../functions/logger';
@@ -25,10 +23,7 @@ export const createUser = async (req: Request, res: Response) => {
     const checkEmail = await UsersModel.exists({ email });
     if (checkEmail) return badRequest(res, 'Email already exist.');
 
-    const id = generateId(Entities.Users);
-
     const userInput = {
-      id,
       email,
       password: await encrypt(password),
     };
