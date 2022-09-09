@@ -1,5 +1,5 @@
-import { JwtPayload, sign, verify } from 'jsonwebtoken';
-import { Request, Response } from 'express';
+import { sign, verify } from 'jsonwebtoken';
+import { Request, Response, NextFunction } from 'express';
 
 import { LooseObject } from '../types/loose-object';
 import { forbidden } from './response';
@@ -18,7 +18,8 @@ export const generateAccessToken = (data: LooseObject) => {
 export const validateAccessToken = (
   req: Request,
   res: Response,
-): string | JwtPayload => {
+  next: NextFunction,
+) => {
   try {
     const { authorization } = req.headers;
 
@@ -31,7 +32,9 @@ export const validateAccessToken = (
     const token = auth[1]; // users token
 
     const user = verify(token, PW);
-    return user;
+
+    req.headers['user'] = user as string;
+    next();
   } catch (e) {
     return forbidden(res);
   }

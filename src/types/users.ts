@@ -16,4 +16,18 @@ interface LoginInput {
   password: string;
 }
 
-export { Users, CreateUserInput, LoginInput };
+interface JwtVerifyResult {
+  data: {
+    id: string;
+  };
+  iat: number;
+  exp: number;
+}
+
+interface UpdateUserInput {
+  email: string;
+  password: string;
+  password_confirmation: string;
+}
+
+export { Users, CreateUserInput, LoginInput, JwtVerifyResult, UpdateUserInput };
