@@ -1,5 +1,4 @@
 interface Users {
-  id: Buffer;
   email: string;
   password: string;
   createdAt: Date;
