@@ -1,6 +1,5 @@
 // to convert buffer to string hex
 export const bufferToString = (data: Buffer) => {
-  console.log(data);
   if (!(data instanceof Buffer)) {
     throw new Error('Invalid return type for Binary');
   }

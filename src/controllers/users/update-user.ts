@@ -13,7 +13,7 @@ export const updateUser = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    const user = req.headers['user'] as unknown;
+    const user = req.headers.user as unknown;
     const { data } = user as JwtVerifyResult;
 
     const { id: loginUserId } = data;
@@ -39,7 +39,7 @@ export const updateUser = async (req: Request, res: Response) => {
     const result = await UsersModel.findByIdAndUpdate(id, userInput);
 
     if (result) return noContent(res);
-    else return badRequest(res, "User doesn't exist.");
+    return badRequest(res, "User doesn't exist.");
   } catch (e) {
     logger.error(e);
     return badRequest(res, 'User is not created.');

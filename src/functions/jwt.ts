@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+
 import { sign, verify } from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
 
@@ -33,7 +35,7 @@ export const validateAccessToken = (
 
     const user = verify(token, PW);
 
-    req.headers['user'] = user as string;
+    req.headers.user = user as string;
     next();
   } catch (e) {
     return forbidden(res);

@@ -14,7 +14,7 @@ export const deleteUser = async (req: Request, res: Response) => {
     const result = await UsersModel.findByIdAndDelete(id);
 
     if (result) return noContent(res);
-    else return badRequest(res, "User doesn't exist.");
+    return badRequest(res, "User doesn't exist.");
   } catch (e) {
     logger.error(e);
     return badRequest(res, "User doesn't exist.");

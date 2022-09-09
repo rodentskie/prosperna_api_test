@@ -24,6 +24,4 @@ export const ok = (res: Response, msg?: string, data?: LooseObject) => {
   return res.status(200).send({ message, data });
 };
 
-export const noContent = (res: Response) => {
-  return res.sendStatus(204);
-};
+export const noContent = (res: Response) => res.sendStatus(204);
