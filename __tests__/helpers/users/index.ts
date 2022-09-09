@@ -51,11 +51,12 @@ export const fakeUserDataForLogin = async () => {
     password: hash,
   };
 
-  await UsersModel.create({
+  const res = await UsersModel.create({
     ...user,
   });
 
-  return { email, password };
+  const { _id: id } = res;
+  return { email, password, id };
 };
 
 export const fakeUserDataForLoginNewEmail = async () => {
@@ -101,5 +102,10 @@ export const returnExistingUserFromDB = async () => {
     ...user,
   });
 
+  return res;
+};
+
+export const getOneUser = async (id: string) => {
+  const res = await UsersModel.findById(id);
   return res;
 };

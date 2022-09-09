@@ -18,7 +18,7 @@ export const login = async (req: Request, res: Response) => {
     const user = await UsersModel.findOne({ email });
     if (!user) return badRequest(res, "User doesn't exist.");
 
-    const { password, id } = user;
+    const { password, _id: id } = user;
 
     const checkPassword = await validateData(passwordInput, password);
     if (!checkPassword) return badRequest(res, 'Incorrect password.');
