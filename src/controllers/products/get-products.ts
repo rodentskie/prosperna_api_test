@@ -10,6 +10,7 @@ const logger = makeLogger('GetProducts');
 
 export const getProducts = async (req: Request, res: Response) => {
   try {
+    // populate userId to show user details
     const products: Products[] = await ProductsModel.find(
       {},
       {
@@ -30,6 +31,7 @@ export const getProduct = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
+    // populate userId to show user details
     const product: Products | null = await ProductsModel.findById(id, {
       __v: 0,
     }).populate({

@@ -17,6 +17,6 @@ export const deleteUser = async (req: Request, res: Response) => {
     return badRequest(res, "User doesn't exist.");
   } catch (e) {
     logger.error(e);
-    return badRequest(res, "User doesn't exist.");
+    return badRequest(res, 'Error on delete, please check.');
   }
 };
