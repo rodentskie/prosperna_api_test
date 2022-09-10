@@ -15,4 +15,11 @@ interface CreateProductInput {
   product_tag: string[];
 }
 
-export { Products, CreateProductInput };
+interface UpdateProductInput {
+  product_name: string;
+  product_description: string;
+  product_price: number;
+  product_tag: string[];
+}
+
+export { Products, CreateProductInput, UpdateProductInput };

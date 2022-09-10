@@ -16,6 +16,11 @@ export const fakeProductData = () => {
   };
 };
 
+export const getOneProduct = async (id: string) => {
+  const res = await ProductsModel.findById(id);
+  return res;
+};
+
 export const returnFakeProductAndUser = async () => {
   const password = random.alpha({ count: 8 });
   const hash = await encrypt(password);

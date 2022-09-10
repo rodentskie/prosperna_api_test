@@ -5,7 +5,7 @@ import { JwtVerifyResult } from '../../types/users';
 import { badRequest, noContent } from '../../functions/response';
 import { makeLogger } from '../../functions/logger';
 
-const logger = makeLogger('DeleteProducts');
+const logger = makeLogger('DeleteProduct');
 
 export const deleteProduct = async (req: Request, res: Response) => {
   try {
