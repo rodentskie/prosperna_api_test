@@ -5,6 +5,7 @@ import {
   getProduct,
   getProducts,
   deleteProduct,
+  updateProduct,
 } from '../../controllers/products';
 import { validateAccessToken } from '../../functions/jwt';
 
@@ -14,5 +15,6 @@ router.post('/', validateAccessToken, createProduct);
 router.get('/:id', getProduct);
 router.get('/', getProducts);
 router.delete('/:id', validateAccessToken, deleteProduct);
+router.patch('/:id', validateAccessToken, updateProduct);
 
 export = router;

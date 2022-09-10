@@ -13,6 +13,18 @@ Prosperna Backend REST API Exam
 First install the packages: `npm install`
 Run the database container: `docker-compose up -d`
 
+### Lint
+
+`npm run lint`
+
+### Test
+
+In the `.env` file change `NODE_ENV=test`
+
+Run: `npm run test`
+
+---
+
 ### Development
 
 `npm run dev`

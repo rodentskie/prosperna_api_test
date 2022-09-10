@@ -60,4 +60,38 @@ describe('Delete product test suite.', () => {
       .which.is.a('string')
       .eq('Error on delete, please check.');
   });
+  it('Delete of product, by different user.', async function () {
+    const { res: product, user, password } = await returnFakeProductAndUser();
+    const { res: newProduct } = await returnFakeProductAndUser();
+
+    const { email } = user;
+
+    const login = await request(this.server)
+      .post('/api/login')
+      .send({ email, password });
+
+    const { body: loginBody } = login;
+    const { data: loginData } = loginBody;
+    const { token } = loginData;
+
+    const { _id: id } = newProduct;
+    const res = await request(this.server)
+      .delete(`/api/products/${id}`)
+      .set('Authorization', `Bearer ${token}`);
+
+    const { status, body } = res;
+
+    expect(status).which.is.a('number').eq(400);
+    expect(body.message).which.is.a('string').eq('Not allowed to delete.');
+  });
+  it('Delete of product, not logged in.', async function () {
+    const { res: product } = await returnFakeProductAndUser();
+
+    const { _id: id } = product;
+    const res = await request(this.server).delete(`/api/products/${id}`);
+
+    const { status } = res;
+
+    expect(status).which.is.a('number').eq(403);
+  });
 });
