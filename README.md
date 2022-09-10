@@ -25,6 +25,8 @@ Run: `npm run test`
 
 ---
 
+In the `.env` file change `NODE_ENV` to any value other than `test`.
+
 ### Development
 
 `npm run dev`

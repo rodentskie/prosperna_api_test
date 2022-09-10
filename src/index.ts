@@ -6,8 +6,10 @@ import ApiServer from './server';
 
 const logger = makeLogger('API');
 
+// start api server
 ApiServer.start();
 
+// to handle graceful termination when an unhandle error occurs
 exitHook.uncaughtExceptionHandler((e) => {
   logger.error(e);
 });
