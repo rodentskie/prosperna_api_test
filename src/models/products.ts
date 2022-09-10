@@ -4,11 +4,11 @@ import { Products } from '../types/products';
 
 const schema = new Schema<Products>(
   {
-    id: { type: Buffer, required: true, unique: true },
-    userId: { type: Buffer, required: true },
     name: { type: String, required: true },
-    description: String,
+    description: { type: String, required: true },
+    price: { type: Number, required: true },
     tag: [String],
+    userId: { type: String, required: true, ref: 'Users' },
     createdAt: Date,
     updatedAt: Date,
   },

@@ -8,7 +8,7 @@ import { makeLogger } from './functions/logger';
 import { delay } from './functions/delay';
 import { badRequest } from './functions/response';
 
-import { LoginRouter, UserRouter } from './routes';
+import { LoginRouter, UserRouter, ProductRouter } from './routes';
 
 config();
 
@@ -45,6 +45,7 @@ export default class ApiServer {
 
     // api routes
     app.use('/api/users', UserRouter);
+    app.use('/api/products', ProductRouter);
     app.use('/api/login', LoginRouter);
 
     // when invalid routes are entered
