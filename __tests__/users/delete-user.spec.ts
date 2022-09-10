@@ -28,6 +28,8 @@ describe('Delete single user test suite.', () => {
 
     expect(status).which.is.a('number').eq(400);
     expect(body).to.have.property('message');
-    expect(body.message).which.is.a('string').eq("User doesn't exist.");
+    expect(body.message)
+      .which.is.a('string')
+      .eq('Error on delete, please check.');
   });
 });

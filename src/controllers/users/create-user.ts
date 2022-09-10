@@ -15,6 +15,7 @@ export const createUser = async (req: Request, res: Response) => {
 
     const { email, password, password_confirmation } = data;
 
+    // validate email format
     if (!validate(email)) return badRequest(res, 'Invalid email.');
     if (password !== password_confirmation) {
       return badRequest(res, 'Password does not match.');

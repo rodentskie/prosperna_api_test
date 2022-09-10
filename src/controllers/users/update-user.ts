@@ -23,6 +23,7 @@ export const updateUser = async (req: Request, res: Response) => {
     const input = req.body as UpdateUserInput;
     const { email, password, password_confirmation } = input;
 
+    // validate email format
     if (!validate(email)) return badRequest(res, 'Invalid email.');
     if (password !== password_confirmation) {
       return badRequest(res, 'Password does not match.');

@@ -1,6 +1,7 @@
 import { commerce, random, internet } from 'faker';
 import { ProductsModel } from '../../../src/models/products';
 import { UsersModel } from '../../../src/models/user';
+import { encrypt } from '../../../src/functions/encryption';
 
 export const fakeProductData = () => {
   return {
@@ -12,6 +13,52 @@ export const fakeProductData = () => {
       commerce.productAdjective(),
       commerce.productAdjective(),
     ],
+  };
+};
+
+export const returnFakeProductAndUser = async () => {
+  const password = random.alpha({ count: 8 });
+  const hash = await encrypt(password);
+
+  const user = {
+    email: internet.email(),
+    password: hash,
+  };
+
+  const product = {
+    product_name: commerce.product(),
+    product_description: commerce.productDescription(),
+    product_price: parseFloat(commerce.price()),
+    product_tag: [
+      commerce.productAdjective(),
+      commerce.productAdjective(),
+      commerce.productAdjective(),
+    ],
+  };
+
+  const {
+    product_name: name,
+    product_description: description,
+    product_price: price,
+    product_tag: tag,
+  } = product;
+
+  const { _id: userId } = await UsersModel.create({
+    ...user,
+  });
+
+  const res = await ProductsModel.create({
+    name,
+    description,
+    price,
+    tag,
+    userId,
+  });
+
+  return {
+    res,
+    user,
+    password,
   };
 };
 
